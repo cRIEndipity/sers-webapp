@@ -1,0 +1,325 @@
+/* Layout */
+.radar-scanner {
+  display: flex;
+  height: 100%;
+  gap: 20px;
+}
+
+.radar-container {
+  display: flex;
+  height: 100%;
+  gap: 20px;
+}
+
+.radar-display {
+  flex: 1;
+  position: relative;
+  background-color: rgba(0, 20, 40, 0.8);
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  border: 2px solid #1a3a6a;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.2);
+}
+
+/* Radar Animation */
+.radar-sweep {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(0, 255, 100, 0) 0deg,
+    rgba(0, 255, 100, 0.3) 90deg,
+    rgba(0, 255, 100, 0) 180deg
+  );
+  animation: sweep 4s linear infinite;
+  transform-origin: center;
+  border-radius: 50%;
+}
+
+@keyframes sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Radar Lines & Circles */
+.radar-line.horizontal,
+.radar-line.vertical {
+  position: absolute;
+  background-color: #2ecc71;
+  opacity: 0.3;
+}
+
+.radar-line.horizontal {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+
+.radar-line.vertical {
+  height: 100%;
+  width: 1px;
+  left: 50%;
+  top: 0;
+}
+
+.radar-circle {
+  position: absolute;
+  border: 1px solid #2ecc71;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.radar-circle.inner {
+  width: 30%;
+  height: 30%;
+  top: 35%;
+  left: 35%;
+}
+
+.radar-circle.middle {
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+}
+
+.radar-circle.outer {
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+/* Blip */
+.radar-blip {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: red;
+  cursor: pointer;
+}
+
+.radar-blip .pulse-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 0.5);
+  animation: pulse 1.5s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.blip-label {
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Blip Priority Styles */
+.radar-blip.high { background-color: #ff5722; }
+.radar-blip.medium { background-color: #ff9800; }
+.radar-blip.critical { background-color: #f44336; }
+.radar-blip.selected {
+  box-shadow: 0 0 10px 2px yellow;
+}
+
+/* Signal List */
+.radar-info {
+  width: 500px;
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.signal-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.signal-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff3e0;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.signal-item.selected {
+  border-color: #4caf50;
+  background-color: #e0f2f1;
+}
+
+.signal-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  margin-right: 10px;
+}
+
+.signal-icon.high { background-color: #ff5722; }
+.signal-icon.medium { background-color: #ff9800; }
+.signal-icon.critical { background-color: #f44336; }
+
+.signal-details {
+  flex-grow: 1;
+}
+
+.signal-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.signal-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.priority-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+  font-size: 11px;
+}
+
+.priority-badge.high { background-color: #ff5722; }
+.priority-badge.medium { background-color: #ff9800; }
+.priority-badge.critical { background-color: #f44336; }
+
+.signal-status {
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+.signal-status.active { color: green; }
+.signal-status.pending { color: orange; }
+
+/* Emergency Details Panel */
+.emergency-details-panel {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 350px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  z-index: 100;
+}
+
+.close-details {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.detail-row {
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: bold;
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+.detail-value {
+  font-size: 13px;
+}
+
+.detail-value.priority-high { color: #ff5722; }
+.detail-value.priority-medium { color: #ff9800; }
+.detail-value.priority-critical { color: #f44336; }
+
+.detail-value.status-active { color: green; }
+.detail-value.status-pending { color: orange; }
+
+/* Communication Panel */
+.communication-panel {
+  margin-top: 20px;
+}
+
+.message-container {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.victim .message-sender {
+  color: #f44336;
+}
+
+.message.rescuer .message-sender {
+  color: #4caf50;
+}
+
+.message-content {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.message-time {
+  font-size: 10px;
+  color: gray;
+}
+
+.message-input {
+  display: flex;
+  gap: 5px;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.message-input button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

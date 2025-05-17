@@ -1,0 +1,240 @@
+/* Add a parent container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), 
+                url('https://images.unsplash.com/photo-1581093196271-cb6a3e5437fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+  }
+.emergency-sos-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), 
+              url('https://images.unsplash.com/photo-1581093196271-cb6a3e5437fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+  background-size: cover;
+}
+
+.glass-container {
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.sos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.sos {
+  background: red;
+  color: white;
+  font-size: 22px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: bold;
+  box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7);
+  animation: sosPulse 1.5s infinite;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.sos:hover {
+  transform: scale(1.05);
+}
+
+.sos:active {
+  transform: scale(0.95);
+}
+
+.sos::before, .sos::after {
+  content: "";
+  position: absolute;
+  border: 2px solid red;
+  border-radius: 50%;
+  width: 140%;
+  height: 140%;
+  opacity: 0;
+  animation: radarPulse 1.5s infinite;
+}
+
+.sos::after {
+  animation-delay: 0.75s;
+}
+
+@keyframes sosPulse {
+  0% { box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7); }
+  50% { box-shadow: 0 0 30px 10px rgba(255, 0, 0, 0.9); }
+  100% { box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7); }
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.3; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.instruction-text {
+  margin: 2rem 0;
+}
+
+.instruction-text h2 {
+  color: #e30613;
+  margin-bottom: 0.5rem;
+}
+
+.instruction-text p {
+  color: #333;
+  opacity: 0.8;
+}
+
+.user-location-container {
+  background: rgba(245, 245, 245, 0.8);
+  border-radius: 15px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.user-profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.location-icon {
+  color: #e30613;
+  margin-right: 0.5rem;
+}
+
+.user-address {
+  color: #333;
+  opacity: 0.8;
+}
+
+.change-location-button {
+  background: none;
+  border: 1px solid #e30613;
+  color: #e30613;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.change-location-button:hover {
+  background: rgba(227, 6, 19, 0.1);
+}
+
+.or-text {
+  margin: 1.5rem 0;
+  color: #333;
+  opacity: 0.6;
+  position: relative;
+}
+
+.or-text::before, .or-text::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 40%;
+  background: #ccc;
+  top: 50%;
+}
+
+.or-text::before {
+  left: 0;
+}
+
+.or-text::after {
+  right: 0;
+}
+
+.report-incident-button {
+  background: #00689d;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.report-incident-button:hover {
+  background: #005a8a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-incident-container {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 480px) {
+  .glass-container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .sos {
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+  }
+  
+  .user-profile-pic {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .instruction-text h2 {
+    font-size: 1.2rem;
+  }
+  
+  .instruction-text p {
+    font-size: 0.9rem;
+  }
+}
